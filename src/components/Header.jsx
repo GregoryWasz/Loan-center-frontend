@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { Link, useHistory } from "react-router-dom";
 import jwtDecode from "jwt-decode";
+import { capitalize } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -70,23 +71,23 @@ export default function Header() {
               <Button color="inherit" component={Link} to="/logs">
                 History
               </Button>
+              <Button color="inherit" component={Link} to="/search">
+                Search
+              </Button>
               {isAdmin && (
                 <>
                   <Button color="inherit" component={Link} to="/admin">
                     Admin Site
                   </Button>
                   <Button color="inherit" component={Link} to="/register">
-                    Register
+                    Create User
                   </Button>
                 </>
               )}
-              <Button color="inherit" component={Link} to="/search">
-                Search
-              </Button>
               <Button color="inherit" onClick={handleLogout}>
                 Logout
               </Button>
-              Hello, {currentUsername}
+              Hi {capitalize(currentUsername)}
             </>
           )}
           {!isLoggedIn && (
