@@ -72,7 +72,7 @@ export default function Register() {
     <Paper className={classes.paper}>
       <form className={classes.form}>
         <Typography className={classes.registerTypo} variant="h5">
-          Register to Loan Center
+          Create user
         </Typography>
         <TextField
           className={classes.registerForm}
@@ -100,7 +100,7 @@ export default function Register() {
           variant="outlined"
           onClick={handleRegister}
         >
-          Register
+          Create user
         </Button>
         {isError && (
           <Alert severity="error" className={classes.message}>
