@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import axios from "../api/axios";
 import { UserContext } from "./UserContext";
+import Alert from "@material-ui/lab/Alert";
 
 export default function Product() {
   const history = useHistory();
@@ -10,6 +11,8 @@ export default function Product() {
   const [product, setProduct] = useState([]);
   const [logs, setLogs] = useState([]);
   const [isChanged, setIsChanged] = useState(0);
+  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const { isAdmin } = useContext(UserContext);
 
   async function handleChangeStateToOk(e) {
@@ -37,7 +40,10 @@ export default function Product() {
         console.log("STATE CHANGED TO BORROWED");
         setIsChanged(2);
       })
-      .catch((error) => {});
+      .catch((error) => {
+        setIsError(true);
+        setErrorMessage(error.response.data.message);
+      });
   }
 
   async function handleChangeStateToBroken(e) {
@@ -96,6 +102,7 @@ export default function Product() {
 
   return (
     <>
+      {isError && <Alert severity="error">{errorMessage}</Alert>}
       <Paper>
         {product.product_id}
         {product.product_name}

@@ -3,6 +3,7 @@ import jwtDecode from "jwt-decode";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "../api/axios";
+import Alert from "@material-ui/lab/Alert";
 
 export default function Admin() {
   let history = useHistory();
@@ -18,6 +19,9 @@ export default function Admin() {
   const [newPrice, setNewPrice] = useState("");
   const [newProductSource, setNewProductSource] = useState("");
 
+  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
   async function createNewSource(e) {
     e.preventDefault();
 
@@ -28,6 +32,8 @@ export default function Admin() {
         setIsChanged(1);
       })
       .catch((error) => {
+        setIsError(true);
+        setErrorMessage(error.response.data.message);
         console.log(error);
       });
   }
@@ -55,6 +61,8 @@ export default function Admin() {
         setNewProductSource("");
       })
       .catch((error) => {
+        setIsError(true);
+        setErrorMessage(error.response.data.message);
         console.log(error);
       });
   }
@@ -100,6 +108,7 @@ export default function Admin() {
 
   return (
     <>
+      {isError && <Alert severity="error">{errorMessage}</Alert>}
       {users.map((user) => {
         const { admin, user_id, username } = user;
         return (
