@@ -55,11 +55,13 @@ export default function Login() {
       .then((response) => {
         localStorage.removeItem("token");
         const token = response.data.token;
-        localStorage.setItem("token", token);
+        localStorage["token"] = response.data.token;
         setIsLoggedIn(true);
         setCurrentUsername(token.name);
         setIsAdmin(token.admin);
         history.push("/products");
+        window.location.reload();
+        // XD
       })
       .catch((error) => {
         setIsError(true);

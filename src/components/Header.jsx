@@ -38,6 +38,7 @@ export default function Header() {
     setIsAdmin(false);
     setCurrentUsername("");
     history.push("/");
+    window.location.reload();
   }
 
   useEffect(() => {
