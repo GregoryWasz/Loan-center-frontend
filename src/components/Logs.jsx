@@ -11,7 +11,7 @@ export default function Logs() {
     await axios
       .get("/logs")
       .then((response) => {
-        setLogs(response.data.logs);
+        setLogs(response.data.logs.reverse());
       })
       .catch((error) => {
         console.log(error);
