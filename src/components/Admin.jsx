@@ -30,6 +30,8 @@ export default function Admin() {
       .then((response) => {
         setNewSource("");
         setIsChanged(1);
+        setIsError(false);
+        setErrorMessage("");
       })
       .catch((error) => {
         setIsError(true);
@@ -59,6 +61,8 @@ export default function Admin() {
         setNewModel("");
         setNewPrice("");
         setNewProductSource("");
+        setIsError(false);
+        setErrorMessage("");
       })
       .catch((error) => {
         setIsError(true);
