@@ -8,6 +8,7 @@ export default function Product() {
   const history = useHistory();
   const { id } = useParams();
   const [product, setProduct] = useState([]);
+  const [logs, setLogs] = useState([]);
   const [isChanged, setIsChanged] = useState(0);
   const { isAdmin } = useContext(UserContext);
 
@@ -79,25 +80,47 @@ export default function Product() {
           console.log(error);
         });
     }
+    async function getProductLogs() {
+      await axios
+        .get("/logs/" + id)
+        .then((response) => {
+          setLogs(response.data.logs.reverse());
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
     getProduct();
+    getProductLogs();
   }, [history, id, isChanged]);
 
   return (
-    <Paper>
-      TODO CHANGE STATES TODO ADMIN: DELETE,
-      {product.product_id}
-      {product.product_name}
-      {product.category}
-      {product.model}
-      {product.state}
-      {product.source}
-      {product.price}
-      {product.description}
-      {product.borrowed_by}
-      <Button onClick={handleChangeStateToOk}>OK</Button>
-      <Button onClick={handleChangeStateToBorrowed}>BORROW</Button>
-      <Button onClick={handleChangeStateToBroken}>Broken</Button>
-      {isAdmin && <Button onClick={handleDeleteProduct}>DELETE</Button>}
-    </Paper>
+    <>
+      <Paper>
+        {product.product_id}
+        {product.product_name}
+        {product.category}
+        {product.model}
+        {product.state}
+        {product.source}
+        {product.price}
+        {product.description}
+        {product.borrowed_by}
+        <Button onClick={handleChangeStateToOk}>OK</Button>
+        <Button onClick={handleChangeStateToBorrowed}>BORROW</Button>
+        <Button onClick={handleChangeStateToBroken}>Broken</Button>
+        {isAdmin && <Button onClick={handleDeleteProduct}>DELETE</Button>}
+      </Paper>
+      {logs.map((log) => {
+        const { date, log_id, state, username } = log;
+        return (
+          <Paper key={log_id}>
+            {date}
+            {state}
+            {username}
+          </Paper>
+        );
+      })}
+    </>
   );
 }
