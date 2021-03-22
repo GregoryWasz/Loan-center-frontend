@@ -1,13 +1,15 @@
+//TODO REMOVE ERRORS
 import { Button, Paper, TextField, Typography } from "@material-ui/core";
 import jwtDecode from "jwt-decode";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "../api/axios";
 import Alert from "@material-ui/lab/Alert";
+import MenuItem from "@material-ui/core/MenuItem";
 
 export default function Admin() {
   let history = useHistory();
-  const [sources, setSources] = useState([]);
+  const [sources, setSources] = useState(["first"]);
   const [users, setUsers] = useState([]);
   const [newSource, setNewSource] = useState("");
   const [isChanged, setIsChanged] = useState(0);
@@ -184,12 +186,22 @@ export default function Admin() {
         />
         <TextField
           type="text"
+          select
           id="newProductSource"
           label="newProductSource"
           variant="outlined"
           value={newProductSource}
           onChange={(e) => setNewProductSource(e.target.value)}
-        />
+        >
+          {sources.map((source) => {
+            const { source_id, source_name } = source;
+            return (
+              <MenuItem key={source_id} value={source_name}>
+                {source_name}
+              </MenuItem>
+            );
+          })}
+        </TextField>
         <Button variant="outlined" onClick={createNewProduct}>
           Create New product
         </Button>
