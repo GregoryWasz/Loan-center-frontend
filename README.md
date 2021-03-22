@@ -1,3 +1,7 @@
+# Loan Center Frontend
+
+This is a frontend for my [loan center python application](https://github.com/GregoryWasz/Loan-center-backend).
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
