@@ -13,15 +13,13 @@ import React, { useState, useEffect } from "react";
 import jwtDecode from "jwt-decode";
 
 const theme = createMuiTheme({
+  overrides: {},
   palette: {
     primary: {
-      main: "#000000",
+      main: "#F5DF4D",
     },
     secondary: {
-      main: "#000000",
-    },
-    background: {
-      main: "#000000",
+      main: "#939597",
     },
   },
 });
@@ -60,30 +58,32 @@ function App() {
         >
           <Router>
             <Header />
-            <Switch>
-              <Route exact path="/">
-                <Login />
-              </Route>
-              <Route path="/register">
-                <Register />
-              </Route>
-              <Route path="/admin">
-                <Admin />
-              </Route>
-              <Route path="/search">
-                <Search />
-              </Route>
-              <Route exact path="/product/:id">
-                <Product />
-              </Route>
-              <Route path="/products">
-                <Products />
-              </Route>
-              <Route path="/logs">
-                <Logs />
-              </Route>
-              <Route>Site not found</Route>
-            </Switch>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <Switch>
+                <Route exact path="/">
+                  <Login />
+                </Route>
+                <Route path="/register">
+                  <Register />
+                </Route>
+                <Route path="/admin">
+                  <Admin />
+                </Route>
+                <Route path="/search">
+                  <Search />
+                </Route>
+                <Route exact path="/product/:id">
+                  <Product />
+                </Route>
+                <Route path="/products">
+                  <Products />
+                </Route>
+                <Route path="/logs">
+                  <Logs />
+                </Route>
+                <Route>Site not found</Route>
+              </Switch>
+            </div>
           </Router>
         </UserContext.Provider>
       </ThemeProvider>
