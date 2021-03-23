@@ -11,8 +11,12 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     margin: "1rem",
     padding: "1rem",
+    paddingRight: "5rem",
+    paddingLeft: "5rem",
     display: "flex",
     justifyContent: "center",
+    maxWidth: "20rem",
+    maxHeight: "20rem",
   },
   form: {
     display: "flex",
@@ -21,13 +25,15 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
   },
   loginTypo: {
-    margin: "0.2rem",
+    spacing: "0.25rem",
   },
   loginForm: {
     margin: "0.25rem",
   },
   button: {
     margin: "0.25rem",
+    backgroundColor: "#939597",
+    color: "#FFFFFF",
   },
   message: {
     margin: "0.25rem",
@@ -70,7 +76,7 @@ export default function Login() {
   }
 
   return (
-    <Paper className={classes.paper}>
+    <Paper elevation={10} className={classes.paper}>
       <form className={classes.form}>
         <Typography className={classes.login} variant="h5">
           Login to loan center
@@ -98,7 +104,6 @@ export default function Login() {
         <Button
           className={classes.button}
           fullWidth={true}
-          variant="outlined"
           onClick={handleLogin}
         >
           Login
