@@ -11,11 +11,12 @@ import { capitalize } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
     color: "#698CC3",
   },
   title: {
     flexGrow: 1,
+    color: "#000000",
+    textDecoration: "none",
   },
 }));
 
