@@ -12,8 +12,12 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     margin: "1rem",
     padding: "1rem",
+    paddingRight: "5rem",
+    paddingLeft: "5rem",
     display: "flex",
     justifyContent: "center",
+    maxWidth: "20rem",
+    maxHeight: "20rem",
   },
   form: {
     display: "flex",
@@ -26,9 +30,12 @@ const useStyles = makeStyles((theme) => ({
   },
   registerForm: {
     margin: "0.25rem",
+    color: "#000000",
   },
   button: {
     margin: "0.25rem",
+    backgroundColor: "#939597",
+    color: "#FFFFFF",
   },
   message: {
     margin: "0.25rem",
@@ -69,7 +76,7 @@ export default function Register() {
   }, [isLoggedIn, isAdmin, history]);
 
   return (
-    <Paper className={classes.paper}>
+    <Paper elevation={10} className={classes.paper}>
       <form className={classes.form}>
         <Typography className={classes.registerTypo} variant="h5">
           Create user
@@ -97,7 +104,6 @@ export default function Register() {
         <Button
           className={classes.button}
           fullWidth={true}
-          variant="outlined"
           onClick={handleRegister}
         >
           Create user
