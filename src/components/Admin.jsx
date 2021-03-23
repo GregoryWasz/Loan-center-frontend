@@ -6,9 +6,41 @@ import { useHistory } from "react-router-dom";
 import axios from "../api/axios";
 import Alert from "@material-ui/lab/Alert";
 import MenuItem from "@material-ui/core/MenuItem";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    margin: "1rem",
+    padding: "1rem",
+    display: "flex",
+    minWidth: "25rem",
+    justifyContent: "center",
+    flexDirection: "column",
+  },
+  wrapper: {
+    padding: "0.25rem",
+    margin: "0.25rem",
+  },
+  middle: {
+    padding: "0.25rem",
+    margin: "0.25rem",
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: "column",
+  },
+  button: {
+    margin: "0.25rem",
+    backgroundColor: "#939597",
+    color: "#FFFFFF",
+  },
+  input: {
+    margin: "0.25rem",
+  },
+}));
 
 export default function Admin() {
   let history = useHistory();
+  const classes = useStyles();
   const [sources, setSources] = useState(["first"]);
   const [users, setUsers] = useState([]);
   const [newSource, setNewSource] = useState("");
@@ -113,82 +145,114 @@ export default function Admin() {
   }, [history, isChanged]);
 
   return (
-    <>
+    <Paper elevation={10} className={classes.paper}>
+      <Typography variant="h5">Admin</Typography>
       {isError && <Alert severity="error">{errorMessage}</Alert>}
-      {users.map((user) => {
-        const { admin, user_id, username } = user;
-        return (
-          <Paper key={user_id}>
-            {admin}
-            {username}
-          </Paper>
-        );
-      })}
-      {sources.map((source) => {
-        const { source_id, source_name } = source;
-        return <Paper key={source_id}>{source_name}</Paper>;
-      })}
-      <Paper>
+      <Paper
+        variant="outlined"
+        className={classes.wrapper}
+        style={{ display: "flex", justifyContent: "center" }}
+      >
+        <div style={{ width: "50%" }}>
+          <Typography variant="h5">Users</Typography>
+          {users.map((user) => {
+            const { admin, user_id, username } = user;
+            return (
+              <Paper
+                variant="outlined"
+                className={classes.wrapper}
+                key={user_id}
+              >
+                {admin}
+                {username}
+              </Paper>
+            );
+          })}
+        </div>
+        <div style={{ width: "50%" }}>
+          <Typography variant="h5">Sources</Typography>
+          {sources.map((source) => {
+            const { source_id, source_name } = source;
+            return (
+              <Paper
+                variant="outlined"
+                className={classes.wrapper}
+                key={source_id}
+              >
+                {source_name}
+              </Paper>
+            );
+          })}
+        </div>
+      </Paper>
+      <Paper variant="outlined" className={classes.middle}>
         <Typography variant="h5">Add new source</Typography>
         <TextField
+          className={classes.input}
           type="text"
           id="newSource"
-          label="newSource"
+          label="Source name"
           variant="outlined"
           value={newSource}
           onChange={(e) => setNewSource(e.target.value)}
         />
-        <Button variant="outlined" onClick={createNewSource}>
+        <Button className={classes.button} onClick={createNewSource}>
           Create New Source
         </Button>
       </Paper>
-      <Paper>
+      <Paper variant="outlined" className={classes.middle}>
         <Typography variant="h5">Add new product</Typography>
         <TextField
+          className={classes.input}
           type="text"
           id="newProductName"
-          label="newProductName"
+          label="Product name"
           variant="outlined"
           value={newProductName}
           onChange={(e) => setNewProductName(e.target.value)}
         />
         <TextField
+          className={classes.input}
           type="text"
           id="newDescription"
-          label="newDescription"
+          label="Product description"
           variant="outlined"
           value={newDescription}
           onChange={(e) => setNewDescription(e.target.value)}
         />
         <TextField
+          className={classes.input}
           type="text"
           id="newCategory"
-          label="newCategory"
+          label="Product Category"
           variant="outlined"
           value={newCategory}
           onChange={(e) => setNewCategory(e.target.value)}
         />
         <TextField
+          className={classes.input}
           type="text"
           id="newModel"
-          label="newModel"
+          label="Product Model"
           variant="outlined"
           value={newModel}
           onChange={(e) => setNewModel(e.target.value)}
         />
         <TextField
+          className={classes.input}
           type="number"
           id="newPrice"
-          label="newPrice"
+          label="Product price"
           variant="outlined"
           value={newPrice}
           onChange={(e) => setNewPrice(e.target.value)}
         />
         <TextField
+          className={classes.input}
           type="text"
           select
           id="newProductSource"
-          label="newProductSource"
+          label="Choose product source"
           variant="outlined"
           value={newProductSource}
           onChange={(e) => setNewProductSource(e.target.value)}
@@ -202,10 +266,10 @@ export default function Admin() {
             );
           })}
         </TextField>
-        <Button variant="outlined" onClick={createNewProduct}>
+        <Button className={classes.button} onClick={createNewProduct}>
           Create New product
         </Button>
       </Paper>
-    </>
+    </Paper>
   );
 }
