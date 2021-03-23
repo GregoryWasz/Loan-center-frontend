@@ -1,9 +1,27 @@
-import { Paper, TextField } from "@material-ui/core";
+import { Paper, TextField, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import axios from "../api/axios";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    margin: "1rem",
+    padding: "1rem",
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: "column",
+  },
+  wrapper: {
+    padding: "0.25rem",
+    marginTop: "0.25rem",
+    marginBottom: "0.25rem",
+    textDecoration: "none",
+  },
+}));
 
 export default function Search() {
+  const classes = useStyles();
   const history = useHistory();
   const [results, setResults] = useState([]);
 
@@ -32,19 +50,24 @@ export default function Search() {
   }, [history]);
 
   return (
-    <>
-      <Paper>
-        <TextField variant="outlined" onChange={handleSearch}></TextField>
-      </Paper>
+    <Paper elevation={10} className={classes.paper}>
+      <Typography variant="h5">Search:</Typography>
+      <TextField variant="outlined" onChange={handleSearch}></TextField>
       {results.map((result) => {
         const { category, product_id, product_name } = result;
         return (
-          <Paper key={product_id}>
-            {category}
-            {product_name}
+          <Paper
+            variant="outlined"
+            className={classes.wrapper}
+            key={product_id}
+            component={Link}
+            to={`/product/${product_id}`}
+          >
+            <Typography>Product Name: {product_name}</Typography>
+            <Typography>Category: {category}</Typography>
           </Paper>
         );
       })}
-    </>
+    </Paper>
   );
 }
