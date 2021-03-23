@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     flexDirection: "column",
+    minWidth: "25rem",
   },
   wrapper: {
     padding: "0.25rem",
