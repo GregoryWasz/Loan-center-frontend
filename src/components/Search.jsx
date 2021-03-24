@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import axios from "../api/axios";
 import { makeStyles } from "@material-ui/core/styles";
+import DescriptionIcon from "@material-ui/icons/Description";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -18,6 +19,11 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "0.25rem",
     marginBottom: "0.25rem",
     textDecoration: "none",
+    display: "flex",
+  },
+  typo: {
+    display: "flex",
+    justifyContent: "center",
   },
 }));
 
@@ -52,8 +58,14 @@ export default function Search() {
 
   return (
     <Paper elevation={10} className={classes.paper}>
-      <Typography variant="h5">Search:</Typography>
-      <TextField variant="outlined" onChange={handleSearch}></TextField>
+      <Typography className={classes.typo} variant="h4">
+        Search:
+      </Typography>
+      <TextField
+        label="Type product name to start search"
+        variant="outlined"
+        onChange={handleSearch}
+      ></TextField>
       {results.map((result) => {
         const { category, product_id, product_name } = result;
         return (
@@ -64,8 +76,24 @@ export default function Search() {
             component={Link}
             to={`/product/${product_id}`}
           >
-            <Typography>Product Name: {product_name}</Typography>
-            <Typography>Category: {category}</Typography>
+            <div
+              style={{
+                width: "50%",
+              }}
+            >
+              <Typography>Product Name: {product_name}</Typography>
+              <Typography>Category: {category}</Typography>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                alignItems: "center",
+                width: "50%",
+              }}
+            >
+              <DescriptionIcon />
+            </div>
           </Paper>
         );
       })}
