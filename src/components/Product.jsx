@@ -18,6 +18,12 @@ const useStyles = makeStyles((theme) => ({
     padding: "0.25rem",
     margin: "0.25rem",
   },
+  typo: {
+    padding: "0.25rem",
+    margin: "0.25rem",
+    display: "flex",
+    justifyContent: "center",
+  },
   ok: { backgroundColor: "#6F926E", margin: "0.1rem" },
   borrowed: { backgroundColor: "#F5E403", margin: "0.1rem" },
   broken: { backgroundColor: "#CF5D78", margin: "0.1rem" },
@@ -122,7 +128,7 @@ export default function Product() {
 
   return (
     <Paper elevation={10} className={classes.paper}>
-      <Typography className={classes.wrapper} variant="h5">
+      <Typography className={classes.typo} variant="h4">
         Product Details
       </Typography>
       {isError && <Alert severity="error">{errorMessage}</Alert>}
@@ -138,7 +144,7 @@ export default function Product() {
           <Typography>Borrowed by: {product.borrowed_by}</Typography>
         )}
       </Paper>
-      <Typography className={classes.wrapper} variant="h5">
+      <Typography className={classes.typo} variant="h5">
         Actions
       </Typography>
       <Paper variant="outlined" className={classes.wrapper}>
@@ -160,7 +166,7 @@ export default function Product() {
           </Button>
         )}
       </Paper>
-      <Typography className={classes.wrapper} variant="h5">
+      <Typography className={classes.typo} variant="h5">
         History
       </Typography>
       {logs.map((log) => {
