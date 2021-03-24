@@ -78,7 +78,7 @@ export default function Login() {
   return (
     <Paper elevation={10} className={classes.paper}>
       <form className={classes.form}>
-        <Typography className={classes.login} variant="h5">
+        <Typography className={classes.login} variant="h4">
           Login to loan center
         </Typography>
         <TextField

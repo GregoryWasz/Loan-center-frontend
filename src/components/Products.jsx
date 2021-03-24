@@ -21,6 +21,10 @@ const useStyles = makeStyles((theme) => ({
     margin: "0.25rem",
     padding: "0.25rem",
   },
+  typo: {
+    display: "flex",
+    justifyContent: "center",
+  },
 }));
 
 export default function Products() {
@@ -65,7 +69,9 @@ export default function Products() {
   return (
     <>
       <Paper elevation={10} className={classes.wrapper}>
-        <Typography variant="h5">Our Products</Typography>
+        <Typography className={classes.typo} variant="h4">
+          Our Products
+        </Typography>
         <DataGrid
           disableSelectionOnClick={true}
           onCellDoubleClick={handleDoubleClick}

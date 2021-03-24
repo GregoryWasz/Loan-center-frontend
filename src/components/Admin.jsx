@@ -36,6 +36,10 @@ const useStyles = makeStyles((theme) => ({
   input: {
     margin: "0.25rem",
   },
+  typo: {
+    display: "flex",
+    justifyContent: "center",
+  },
 }));
 
 export default function Admin() {
@@ -146,7 +150,9 @@ export default function Admin() {
 
   return (
     <Paper elevation={10} className={classes.paper}>
-      <Typography variant="h5">Admin</Typography>
+      <Typography className={classes.typo} variant="h4">
+        Admin site
+      </Typography>
       {isError && <Alert severity="error">{errorMessage}</Alert>}
       <Paper
         variant="outlined"
@@ -154,7 +160,9 @@ export default function Admin() {
         style={{ display: "flex", justifyContent: "center" }}
       >
         <div style={{ width: "50%" }}>
-          <Typography variant="h5">Users</Typography>
+          <Typography className={classes.typo} variant="h5">
+            Users
+          </Typography>
           {users.map((user) => {
             const { admin, user_id, username } = user;
             return (
@@ -170,7 +178,9 @@ export default function Admin() {
           })}
         </div>
         <div style={{ width: "50%" }}>
-          <Typography variant="h5">Sources</Typography>
+          <Typography className={classes.typo} variant="h5">
+            Sources
+          </Typography>
           {sources.map((source) => {
             const { source_id, source_name } = source;
             return (
@@ -186,7 +196,9 @@ export default function Admin() {
         </div>
       </Paper>
       <Paper variant="outlined" className={classes.middle}>
-        <Typography variant="h5">Add new source</Typography>
+        <Typography className={classes.typo} variant="h5">
+          Add new source
+        </Typography>
         <TextField
           className={classes.input}
           type="text"
@@ -201,7 +213,9 @@ export default function Admin() {
         </Button>
       </Paper>
       <Paper variant="outlined" className={classes.middle}>
-        <Typography variant="h5">Add new product</Typography>
+        <Typography className={classes.typo} variant="h5">
+          Add new product
+        </Typography>
         <TextField
           className={classes.input}
           type="text"

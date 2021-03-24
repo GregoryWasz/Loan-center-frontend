@@ -16,6 +16,10 @@ const useStyles = makeStyles((theme) => ({
     padding: "0.25rem",
     margin: "0.25rem",
   },
+  typo: {
+    display: "flex",
+    justifyContent: "center",
+  },
 }));
 
 export default function Logs() {
@@ -44,7 +48,9 @@ export default function Logs() {
 
   return (
     <Paper elevation={10} className={classes.paper}>
-      <Typography variant="h5">History: </Typography>
+      <Typography className={classes.typo} variant="h4">
+        History
+      </Typography>
       {logs.map((log) => {
         const { date, log_id, product_id, product_name, state, username } = log;
         return (

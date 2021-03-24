@@ -78,7 +78,7 @@ export default function Register() {
   return (
     <Paper elevation={10} className={classes.paper}>
       <form className={classes.form}>
-        <Typography className={classes.registerTypo} variant="h5">
+        <Typography className={classes.registerTypo} variant="h4">
           Create user
         </Typography>
         <TextField
